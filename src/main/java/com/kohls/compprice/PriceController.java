@@ -34,7 +34,7 @@ public class PriceController {
 	//Method to get specific comparative price,
 	// TODO: I am not aware of how RequestMapping works, hence Sachin please update the request mapping.
 	// Request = localhost:8080/upc?comparativeID=PriceFactory.AMAZON_PRICE
-	
+
 	@RequestMapping(value = "/{upc}?....", method = RequestMethod.GET)
 	public @ResponseBody
 	ProductPrice getSpecificPrice(@PathVariable String upcCode,int comparativeID)
