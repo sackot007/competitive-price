@@ -27,5 +27,8 @@ public class AmazonPriceRetriever extends BasePriceRetriever {
         return value;
     }
 
-
+    @Override
+    public String getCodeString() {
+        return "amazon";
+    }
 }

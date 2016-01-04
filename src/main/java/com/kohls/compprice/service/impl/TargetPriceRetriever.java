@@ -28,4 +28,9 @@ public class TargetPriceRetriever extends BasePriceRetriever {
     }
 
 
+    @Override
+    public String getCodeString() {
+        return "target";
+    }
+
 }

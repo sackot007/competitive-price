@@ -30,4 +30,10 @@ public class BasePriceRetriever implements PriceRetriever {
         return userAgent.doc;
 
     }
+
+
+    @Override
+    public String getCodeString() {
+        return null;
+    }
 }
