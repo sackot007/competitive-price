@@ -1,6 +1,7 @@
 package com.kohls.compprice;
 
 import com.kohls.compprice.model.ProductPrice;
+import com.kohls.compprice.service.PriceFactory;
 import com.kohls.compprice.service.PriceRetriever;
 import com.kohls.compprice.service.impl.AmazonPriceRetriever;
 import com.kohls.compprice.service.impl.TargetPriceRetriever;
@@ -28,5 +29,21 @@ public class PriceController {
 		productPrice.addCompetitorPrice("target", priceRetriever.getPrice(upc));
 		return productPrice;
 
+	}
+
+	//Method to get specific comparative price,
+	// TODO: I am not aware of how RequestMapping works, hence Sachin please update the request mapping.
+	// Request = localhost:8080/upc?comparativeID=PriceFactory.AMAZON_PRICE
+	
+	@RequestMapping(value = "/{upc}?....", method = RequestMethod.GET)
+	public @ResponseBody
+	ProductPrice getSpecificPrice(@PathVariable String upcCode,int comparativeID)
+	{
+		ApplicationContext context = new ClassPathXmlApplicationContext("../mvc-dispatcher-servlet.xml");
+		priceRetriever = PriceFactory.getPriceRetrieverBean(context,comparativeID);
+		ProductPrice productPrice = new ProductPrice();
+		productPrice.setUpc(upcCode);
+		productPrice.addCompetitorPrice(priceRetriever.getCodeString(), priceRetriever.getPrice(upc));
+		return productPrice;
 	}
 }

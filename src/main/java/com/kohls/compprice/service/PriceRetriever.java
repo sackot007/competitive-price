@@ -5,4 +5,5 @@ package com.kohls.compprice.service;
  */
 public interface PriceRetriever {
     String getPrice(String upc);
+    String getCodeString();
 }
