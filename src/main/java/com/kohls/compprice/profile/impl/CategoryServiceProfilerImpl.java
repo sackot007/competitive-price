@@ -11,7 +11,6 @@ import java.util.Map;
  */
 public class CategoryServiceProfilerImpl implements CategoryServiceProfiler {
     private Map<String, PriceRetriever> priceRetrievers;
-    private ProductPrice productPrice = new ProductPrice();
 
     public void setPriceRetrievers(Map<String, PriceRetriever> priceRetrievers) {
         this.priceRetrievers = priceRetrievers;
@@ -19,6 +18,7 @@ public class CategoryServiceProfilerImpl implements CategoryServiceProfiler {
 
     @Override
     public ProductPrice apply(String upc) {
+        final ProductPrice productPrice = new ProductPrice();
         productPrice.setUpc(upc);
         for (Map.Entry<String, PriceRetriever> entry : priceRetrievers.entrySet())
             productPrice.addCompetitorPrice(entry.getKey(), entry.getValue().getPrice(upc));
