@@ -13,4 +13,33 @@
     <context:component-scan base-package="com.kohls.compprice" />
     <mvc:annotation-driven />
 
+    <bean id="toyCategoryPriceProfiler" class="com.kohls.compprice.profile.impl.CategoryServiceProfilerImpl">
+        <property name="priceRetrievers">
+            <map>
+                <entry key="amazon" value-ref="amazonPriceRetrieverService"/>
+                <entry key="toysrus" value-ref="toysRUsPriceRetrieverService"/>
+                <entry key="target" value-ref="targetPriceRetrieverService"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="electronicsCategoryPriceProfiler" class="com.kohls.compprice.profile.impl.CategoryServiceProfilerImpl">
+        <property name="priceRetrievers">
+            <map>
+                <entry key="amazon" value-ref="amazonPriceRetrieverService"/>
+                <entry key="bestbuy" value-ref="bestBuyPriceRetrieverService"/>
+                <entry key="target" value-ref="targetPriceRetrieverService"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="dressCategoryPriceProfiler" class="com.kohls.compprice.profile.impl.CategoryServiceProfilerImpl">
+        <property name="priceRetrievers">
+            <map>
+                <entry key="amazon" value-ref="amazonPriceRetrieverService"/>
+                <entry key="target" value-ref="targetPriceRetrieverService"/>
+            </map>
+        </property>
+    </bean>
+
 </beans>
