@@ -1,7 +1,9 @@
 package com.kohls.compprice.model;
 
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.util.StringUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -52,4 +54,15 @@ public class ProductPrice {
 
     }
 
+    @Override
+    public String toString() {
+        ObjectMapper objectMapper = new ObjectMapper();
+        String val = null;
+        try {
+            val = objectMapper.writeValueAsString(this);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return val;
+    }
 }

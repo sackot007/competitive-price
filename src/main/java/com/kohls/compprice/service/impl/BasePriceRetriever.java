@@ -10,20 +10,27 @@ import org.springframework.stereotype.Service;
  * Created by tkmaw80 on 12/26/15.
  */
 @Service
-public class BasePriceRetriever implements PriceRetriever {
+public abstract class BasePriceRetriever implements PriceRetriever {
     protected String url;
+    final UserAgent userAgent = new UserAgent();
 
     @Override
-    public String getPrice(String upc) {
-        return null;
-    }
+    public abstract String getPrice(String upc);
 
     public Document callURL(String urlwithUpc) {
-        UserAgent userAgent = new UserAgent();
-
         try {
             userAgent.visit(urlwithUpc);
 
+        } catch (ResponseException e) {
+            e.printStackTrace();
+        }
+        return userAgent.doc;
+
+    }
+
+    public Document sendPOST(String url, String postParams) {
+        try {
+            userAgent.sendPOST(url, postParams);
         } catch (ResponseException e) {
             e.printStackTrace();
         }
